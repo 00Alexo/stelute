@@ -41,7 +41,7 @@ export const StarsComponent = ({particleAmount}) => {
       },
     },
     particles: {
-      color: { value: "#fdc374" },
+      color: { value: "#E0E0E0" },
       // stroke: { width: 1.5, color: "#ffffff", opacity: 0.4 },
       links: { color: "#fff8ed", distance: 150, enable: true, opacity: 0.5, width: 1 },
       move: {
