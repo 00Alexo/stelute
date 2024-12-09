@@ -9,16 +9,22 @@ const tasksRoutes = require('./routes/tasksRoutes');
 
 const app = express();
 
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3000';
-
+const allowedOrigins = ['https://stelute.vercel.app', 'http://localhost:3000'];
 const corsOptions = {
-    origin: allowedOrigin,
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'username'],
-    credentials: true
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
